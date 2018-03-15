@@ -78,20 +78,23 @@
             <?php 
 
             
-            $varTitle=$_GET['title'];
+            $varTitle=(isset($_GET['title']) ? $_GET['title'] : null);
             if(!isset($varTitle) || $varTitle == "")
             {
             
             $db = new ImageDetailsGateway($connection);
-            $result = $db -> findAll();
+            $result = $db -> findAllSorted("DESC");
             foreach ($result as $row) {
              $img=$row['ImageID'];
              $path=$row['Path'];
              $title=$row['Title'];
              $code=$row['CountryCodeISO'];
              $contCode=$row['ContinentCode'];
-             $var= $_GET['country'];
-             $varCont= $_GET['continent'];
+             try{
+              $var= (isset($_GET['country']) ? $_GET['country'] : null);
+             $varCont= (isset($_GET['continent']) ? $_GET['continent'] : null);
+             }
+             catch(Exception $e){}
              
              if ((!isset($var)&&(!isset($varCont)))||($var=='0' && $varCont=='0') || $var == $code|| $varCont == $contCode){
 			        echo "<li> <a href='single-image.php?id=$img' class='img-responsive'>

@@ -1,6 +1,7 @@
 <?php
  include('includes/travel-config.inc.php');
  include 'includes/header.inc.php'; 
+ $db = new UsersGateway($connection );
  ?>
     <main class="container">
         <div class="panel panel-default">
@@ -10,7 +11,6 @@
               <div >
                   <ul class="list-group">
                 <?php 
-                 $db = new UsersGateway($connection );
                  $result = $db->findAllSorted("DESC");
                  foreach($result as $row){
                       echo "<li class='list-group-item col-md-3 col-sm-3 col-xs-2' style='border: none'>";

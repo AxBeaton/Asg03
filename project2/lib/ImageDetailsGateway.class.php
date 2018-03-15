@@ -20,11 +20,11 @@ class ImageDetailsGateway extends TableDataGateway {
   return  $this->getSelectStatement." WHERE ".$this->getOrderFields()." LIKE '%$varTitle%'";
  }
  
- public function getSelectStatement2()
- {
- return "SELECT ImageID, UserID, Title, Description, CountryCodeISO, 
- ContinentCode, Path FROM ImageDetails ";
- }
+public function getByCountryISO($id) {
+  $sql = $this->getSelectStatement()." WHERE CountryCodeISO =:id ORDER BY ". $this->getOrderFields();
+  $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
+  return $statement->fetchAll();
+}
  
 }
 ?>

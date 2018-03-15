@@ -6,18 +6,18 @@ include 'includes/header.inc.php';
    
     <main class="container">
         <div class="panel panel-default">
-          <div class="panel-heading heading-2">Countries with Images</div>
+          <div class="panel-heading heading-2">Cities with Images</div>
           <div class="panel-body">
-            <form action="single-country.php" method="post">
+            <form action="single-city.php" method="post">
               <div >
                   <ul class="list-group">
                 <?php 
-                $db = new CountriesGateway($connection);
+                $db = new CitiesGateway($connection);
                 
-                $result = $db->InnerJoin();
+                $result = $db->innerJoin();
                 foreach ($result as $row) {
                     echo "<li class='list-group-item col-md-3 col-sm-3 col-xs-2' style='border: none'>";
-                    echo "<a href='single-country.php?id=" . $row['ISO'] . "'>" . $row['CountryName']. "</a>";
+                    echo "<a href='single-city.php?id=" . $row['CityCode'] . "'>" . $row['AsciiName']. "</a>";
                     echo "</li>";
                 }
             

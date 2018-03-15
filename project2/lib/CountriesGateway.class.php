@@ -26,6 +26,14 @@ class CountriesGateway extends TableDataGateway {
  $statement = DatabaseHelper::runQuery($this->connection, $sql,null);
  return $statement->fetchAll();
 } 
+
+public function cities()
+ {
+ $sql = $this->getSelectStatement()." INNER JOIN ImageDetails on Cities.".$this->getPrimaryKeyName()."= ImageDetails.CityCode 
+ group by ".$this->getOrderFields()." ORDER BY ".$this->getOrderFields();
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,null);
+ return $statement->fetchAll();
+} 
  
  }
 

@@ -14,7 +14,14 @@
 
     <link rel="stylesheet" href="css/captions.css" />
     <link rel="stylesheet" href="css/bootstrap-theme.css" />    
-
+<style>
+    #map {
+        height: 400px;
+        width:100%;
+        background-color:grey;
+    
+    }
+</style>
 </head>
 
 <body>
@@ -58,6 +65,8 @@
                                 <li><a href="browse-countries.php">Countries</a></li>
                                 <li><a href="browse-images.php">Images</a></li>
                                 <li><a href="browse-users.php">Users</a></li>
+                                <li><a href="browse-posts.php">Posts</a></li>
+                                <li><a href="browse-cities.php">Cities</a></li>
                             </ul>
                         </li>
                     </ul>

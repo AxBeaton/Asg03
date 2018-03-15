@@ -2,6 +2,7 @@
  require_once('includes/travel-config.inc.php'); 
  $db = new UsersGateway($connection );
  $result = $db->findById($_GET['id']);
+ $result2= $db->getImages($_GET['id']);
  include 'includes/header.inc.php'; ?>
 
     <div class="container">
@@ -19,10 +20,15 @@
           <div class="panel-heading heading-2">Images by <?php echo $result['FirstName'].' '.$result['LastName'];?></div>
           <div class="panel-body">
             <form action="single-country.php" method="post">
+                <ui class='caption-style-2'>
                 <?php
-                $link="UserID";
-              displayImgList($link)
+                foreach ($result2 as $row) {
+                        echo "<li class='col-md-1'>";
+                        echo "<a href='single-image.php?id=".$row['ImageID']."'><img src='images/square-small/" .$row['Path']. "'></a>";
+                        echo "</li>";
+                }
               ?>
+              </ul>
             </form>
           </div>
         </div>     
