@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Assign 1 (Winter 2018)</title>
+    <title>Assign 2 (Winter 2018)</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -13,14 +14,47 @@
     
 
     <link rel="stylesheet" href="css/captions.css" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" />    
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    
+    
+    
 <style>
-    #map {
-        height: 400px;
-        width:100%;
-        background-color:grey;
+    .topHeaderRow{
+        background-color: #4484CE;
+    }
+    
+    .navbar{
+        background-color: white;
+    border: none;
+    }
+    
+    .topHeaderRow a:link{
+        color: #DF744A !important;
+    }
+    
+   
+    
+    .navbar-header a {
+        color: black !important;
+        font-family: 'Libre Baskerville', serif !important;
+        font-size: 40px;
+
+    }
+    .nav a {
+        color: black !important;
+    }
+    
+    .nav a:hover {
+        color: #984B43 !important;
+    }
+    
+    .dropdown a{
+       
+    background-color: white !important;
     
     }
+    
 </style>
 </head>
 
@@ -30,9 +64,14 @@
             <div class="container">
                 <div class="pull-right">
                     <ul class="list-inline">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+                        <?php if(isset($_SESSION['Username'])){
+	echo "<li><a href='logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>";
+	echo "<li><a href='UserProfile.php'><span class='glyphicon glyphicon-user'></span> Profile</a></li>";
+}
+else{
+    echo "<li><a href='login.php'><span class='glyphicon glyphicon-log-out'></span> Login</a></li>";
+}
+                        echo "<li><a href='Favourites.php'><span class='glyphicon glyphicon-star'></span> Favorites</a></li>";?>
                     </ul>
                 </div>
             </div>

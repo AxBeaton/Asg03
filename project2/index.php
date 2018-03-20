@@ -1,7 +1,7 @@
 <?php include 'includes/header.inc.php'; ?>
     <main class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-4">
+        <div class="row details" >
+          <div class="col-sm-6 col-md-2">
             <div class="thumbnail">
               <img src="/project2/images/misc/home_countries.jpg" alt="Countries">
               <div class="caption">
@@ -11,7 +11,7 @@
               </div>
             </div>
             </div>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-2">
     <div class="thumbnail">
       <img src="/project2/images/misc/home_images.jpg" alt="Images">
       <div class="caption">
@@ -21,13 +21,33 @@
       </div>
     </div>
     </div>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-2">
     <div class="thumbnail">
       <img src="/project2/images/misc/home_users.jpg" alt="Users">
       <div class="caption">
         <h3>Users</h3>
         <p>See information about our contributing users.</p><hr>
         <p><a href="/project2/browse-users.php">View Users</a> </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-2">
+    <div class="thumbnail">
+      <img src="/project2/images/square-medium/222222.jpg" alt="Cities">
+      <div class="caption">
+        <h3>Cities</h3>
+        <p>See all cities for which we have images.</p><hr>
+        <p><a href="/project2/browse-cities.php">View Cities</a> </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-2">
+    <div class="thumbnail">
+      <img src="/project2/images/square-medium/222223.jpg" alt="Posts">
+      <div class="caption">
+        <h3>Posts</h3>
+        <p>See all posts that have been made by our contributing users.</p><hr>
+        <p><a href="/project2/browse-posts.php">View Posts</a> </p>
       </div>
     </div>
   </div>

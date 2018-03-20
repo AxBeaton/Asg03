@@ -1,9 +1,11 @@
 <?php include 'includes/header.inc.php'; ?>
     
-    <main class="container">
-        <div class="jumbotron">
+    <main class="container ">
+        <div class="jumbotron" style="background-color: white;">
           <h2>About Me</h2>
-          <div ><p>This assignment was created by <i>Alex Beaton.</i> It was created as first assignment for COMP 3512.</p><hr>
+          <div ><p>This assignment was created by <i>Alex Beaton, Brian Lee and David Phan.</i> It was created as the second 
+          assignment for COMP 3512. We together Initiated the various Database access pages. We split up the content pages equally amougnst the three of us. 
+          Alex Implemented the login/ logout functionality, Brian Implemented the Favourites Pages, and David Handled the reworking of the CSS.</p><hr>
           <h5>External Resources Used</h5>
           <ul class="list-group">
               <li class="list-group-item"><a href="https://getbootstrap.com">Bootstrap</a></li>

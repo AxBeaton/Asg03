@@ -4,6 +4,7 @@
   font-size: 0.8em;
   padding-top: 1em;
 }
+
 .topHeaderRow  a:link { 
   color: #E8EAF6;
 }
@@ -36,9 +37,7 @@
 .caption {
      text-align: center;   
 }
-.thumbnail {
-     border-color: #9FA8DA;   
-}
+
 .portfolio-item {
    margin-top: 10px;   
 }

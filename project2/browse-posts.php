@@ -2,7 +2,7 @@
  include('includes/travel-config.inc.php');
  include 'includes/header.inc.php'; 
  ?>
- <div class="col-md-10">
+ <div class="col-md-12">
 
                 <div class="jumbotron" id="postJumbo">
                     <h1>Posts</h1>
@@ -25,14 +25,13 @@
                      $img=$row['MainPostImage'];
                      echo '<div class="row">
                        <div class="col-md-4">'; 
-                          echo "<a href='single-image.php/?id=$img'><img src='images/square-medium/$path' alt='$UserID' class='img-responsive'/></a>";
+                          echo "<a href='single-image.php?id=$img'><img src='images/square-medium/$path' alt='$UserID' class='img-responsive'/></a>";
                        echo '</div>
                        <div class="col-md-8"> 
                           <h2>'.$row['Title'].'</h2>
                           <div class="details">';
                             echo "Posted by <a href='single-user.php?id=$UserID'>$name</a>";
-                            echo '<span class="pull-right">2/8/2017</span>
-                           </div>
+                            echo '</div>
                           <p class="excerpt">
                           '.substr($row['Message'],0,200).'...'.'
                           </p>';

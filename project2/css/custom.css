@@ -1,3 +1,12 @@
+body{
+    background-color: white;
+}
+
+hr{
+    border-color: #4484CE !important;
+}
+
+
 .panel > .heading-2 {
     background-color: #111754;
 }
@@ -22,7 +31,60 @@
     vertical-align: middle;
 }
 
-#map{
-    height: 400px;
-    width: 100%;
+ #map {
+   width: 100%;
+   height: 400px;
+   background-color: grey;
+ }
+
+.displayTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: auto;
+    width: 450px;
+    background-color: white;
+    border: 2pt solid #4484CE ;
+    padding: 20px;
+display: none;
+}
+
+.displayTitle img{
+    padding-right: 25px !important;
+    
+}
+.displayTitle p{
+    padding-top: 20px;
+}
+
+.imageWrapper {
+    overflow: hidden;
+    font-size: 13px;
+    
+}
+
+.imageContainer{
+    width: 1050px ;
+    margin: auto !important;
+}
+
+.loginbutton{
+    width: 150px;
+    
+}
+.loginB{
+     text-align: center;
+}
+
+.removeAll{
+    margin-top: 10px;
+}
+
+.map{
+    width: 80%;
+}
+
+.panel-heading{
+    background-color: #4484CE !important;
 }

@@ -1,3 +1,23 @@
+<style>
+.container-fluid {
+        background-color: #4484CE;
+        margin-top: 10px;
+    }
+    
+    .container-fluid div{
+        background-color: #4484CE;
+    }
+
+.container-fluid p{
+        color: white;
+        font-family: 'Libre Baskerville', serif !important;
+        font-size: 11pt;
+    }
+   
+   .container-fluid a{
+        color: white;
+    }
+</style>
     <footer>
         <div class="container-fluid">
                     <div class="row final">

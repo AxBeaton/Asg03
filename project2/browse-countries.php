@@ -3,10 +3,10 @@
 include 'includes/header.inc.php'; 
 
 ?>
-   
+   <!-- make 2 coloumns for the country, finish favourites, finish cookie functions, fix up country db accesses --->
     <main class="container">
         <div class="panel panel-default">
-          <div class="panel-heading heading-2">Countries with Images</div>
+          <div class="panel-heading heading-2 ">Countries with Images</div>
           <div class="panel-body">
             <form action="single-country.php" method="post">
               <div >

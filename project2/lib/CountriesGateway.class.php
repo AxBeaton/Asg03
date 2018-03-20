@@ -10,6 +10,12 @@ class CountriesGateway extends TableDataGateway {
  Continent, CurrencyName, CountryDescription FROM Countries ";
  }
 
+ protected function getSelectStatementCities() //used in single country's map function. Pulls information from Cities without having to open a new DB connection 
+ { // Used in getByCities for map function
+ return "SELECT Cities.CityCode, Cities.CountryCodeISO, AsciiName, Cities.Longitude, Cities.Latitude, Cities.Population, Cities.Elevation, Cities.TimeZone 
+ FROM Cities";
+ }
+ 
 
  protected function getOrderFields() {
  return 'CountryName';
@@ -34,7 +40,15 @@ public function cities()
  $statement = DatabaseHelper::runQuery($this->connection, $sql,null);
  return $statement->fetchAll();
 } 
+public function getByCities($id) {
+ $sql = $this->getSelectStatementCities(). " INNER JOIN ImageDetails on Cities.CityCode =ImageDetails.CityCode
+ INNER JOIN Countries on ImageDetails.CountryCodeISO = Countries.ISO WHERE Countries.ISO =:id";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,Array(':id' => $id));
+ return $statement->fetchAll();
  
+}
+
+
  }
 
 ?>

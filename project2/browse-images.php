@@ -20,9 +20,9 @@
           <div class="panel-body">
               <div class="button-container">
                   
-            <form action="browse-images.php" method="get" class="form-horizontal">
+            <form name="imageForm" action="browse-images.php" method="get" class="form-horizontal">
              <div class="form-inline">
-              <select name="continent" class="form-control">
+              <select id="mySelect" name="continent" class="form-control" onchange="this.form.submit()">
                 <option value="0">Select Continent</option>
                 <?php 
                 $db = new ContinentsGateway($connection);
@@ -37,7 +37,7 @@
              }
                   ?>
               </select>     
-              <select name="country" class="form-control">
+              <select id="mySelect" name="country" class="form-control" onchange="this.form.submit()">
                 <option value="0">Select Country</option>
                 <?php 
                 echo "hello";
@@ -56,12 +56,14 @@
                   }
                   ?>
               </select>    
-              <input type="text"  placeholder="Search title" class="form-control" name=title>
+              <input id="mySelect" type="text"  placeholder="Search title" class="form-control" name=title onchange="this.form.submit()">
               <div>
-              <button type="submit" class="btn btn-primary">Filter</button>
+      
+              <!--<button type="submit" class="btn btn-primary">Filter</button>-->
               </div>
            </div>
             </form>
+             
             <form action="browse-images.php" method="post">
                     <div>
                         <button type="submit" class="btn btn-me">Clear</button>
@@ -74,7 +76,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Images <?php echo $pageVar;?></div>
           <div class="panel-body">
-		<ul class="caption-style-2">
+		<ul class="caption-style-2 imageContainer">
             <?php 
 
             
@@ -97,7 +99,7 @@
              catch(Exception $e){}
              
              if ((!isset($var)&&(!isset($varCont)))||($var=='0' && $varCont=='0') || $var == $code|| $varCont == $contCode){
-			        echo "<li> <a href='single-image.php?id=$img' class='img-responsive'>
+			        echo "<li class='imageWrapper'> <a href='single-image.php?id=$img' class='img-responsive'>
                           <img src='images/square-medium/$path' alt='$title'>
                           <div class='caption'>
                               <div class='blur'></div>
@@ -110,6 +112,7 @@
            }
             }
             else {
+             $db = new ImageDetailsGateway($connection);
             $result = $db -> whereClause();
             foreach ($result as $row) {
              $img=$row['ImageID'];
@@ -119,7 +122,7 @@
              $contCode=$row['ContinentCode'];
              
              
-			        echo "<li> <a href='single-image.php?id=$img' class='img-responsive'>
+			        echo "<li  class='imageWrapper'> <a href='single-image.php?id=$img' class='img-responsive'>
                           <img src='images/square-medium/$path' alt='$title'>
                           <div class='caption'>
                               <div class='blur'></div>

@@ -6,7 +6,7 @@ class CitiesGateway extends TableDataGateway {
 
  protected function getSelectStatement()
  {
- return "SELECT Cities.CityCode, Cities.CountryCodeISO, AsciiName, Cities.Longitude, Cities.Latitude, Population, Elevation, TimeZone 
+ return "SELECT Cities.CityCode, Cities.CountryCodeISO, AsciiName, Cities.Longitude, Cities.Latitude, Cities.Population, Cities.Elevation, Cities.TimeZone 
  FROM Cities";
  }
  protected function getSelectStatement2()
@@ -36,7 +36,13 @@ public function getByCity($id) {
   $statement = DatabaseHelper::runQuery($this->connection, $sql, Array(':id' => $id));
   return $statement->fetchAll();
 }
- 
+//for the single country map, used to pull long, and lat data from cities that have images
+public function getbyCity2($id) {
+ $sql = $this->getSelectStatement(). " INNER JOIN ImageDetails on Cities." .$this->getPrimaryKeyName(). "=ImageDetails.CityCode
+ INNER JOIN Countries on ImageDetails.CountryCodeISO = Countries.ISO WHERE Countries.ISO =:id";
+ $statement = DatabaseHelper::runQuery($this->connection, $sql,Array(':id' => $id));
+ return $statement->fetchAll();
+}
  }
 
 ?>
