@@ -1,13 +1,15 @@
 $(function  (){
-
      var printArray = new Array();
-       $('#myButton').on('click',	function	(e)	{
-          
+       function	pageFunctions(e)	{
           $.get("json/printRules.json", function(data){
               var numberOfImage= $('#printTable img' ).length;
-              
+              printArray = data;
+              var subtotal=0;
+              var shipCost=0;
+              var totalQuant=0;
+              $('#shipNameBasic').text(printArray.shipping[0].name);
+              $('#shipName').text(printArray.shipping[1].name);
               for (let i=0;i<numberOfImage;i++){
-                printArray = data;
                 var sizes='#sizeSelect'+i;
                 var stocks='#paperSelect'+i;
                 var frames='#frameSelect'+i;
@@ -20,24 +22,19 @@ $(function  (){
                 if(temp.size()==0){
                     for(let i=0; i<printArray.sizes.length; i++){
                         sel.append($("<option>").attr('value',printArray.sizes[i].id).text(printArray.sizes[i].name));
-                    }
-                }
-              
+                    } }
                 //Insert paper drop down and set attribute to paper id  
                 temp = $(stocks + ' option')
                 var sel2 = $(stocks);
+                
                 if(temp.size()==0){
                     for(let i=0; i<printArray.stock.length; i++){
                         sel2.append($("<option>").attr('value',printArray.stock[i].id).text(printArray.stock[i].name));
-                    }
-                }
-            
+                    }}
                 var sship = $('#standardShip');
                 sship.attr('value', printArray.shipping[0].id);
                 var eship = $('#expressShip');
                 eship.attr('value', printArray.shipping[1].id);
-            
-            
                 //Insert frame drop down and set attribute to frame id
                 var sel3 = $(frames);
                 if(temp.size()==0){
@@ -45,86 +42,105 @@ $(function  (){
                         sel3.append($("<option>").attr('value',printArray.frame[i].id).text(printArray.frame[i].name));
                     }
                 }
-            
-     
-     
                 //Calculate the cost for the stock and the size
                 if(($(sizes).val()=='0' || $(sizes).val()=='1') && $(stocks).val()=='0'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].small_cost;
                 }
-                
                 if(($(sizes).val()=='2' || $(sizes).val()=='3') && $(stocks).val()=='0'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].large_cost;
                 }
-                
                 if(($(sizes).val()=='0' || $(sizes).val()=='1') && $(stocks).val()=='1'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].small_cost;
                 }
-                
                 if(($(sizes).val()=='2' || $(sizes).val()=='3') && $(stocks).val()=='1'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].large_cost;
                 }
-                
                 if(($(sizes).val()=='0' || $(sizes).val()=='1') && $(stocks).val()=='2'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].small_cost;
                 }
-                
                 if(($(sizes).val()=='2' || $(sizes).val()=='3') && $(stocks).val()=='2'){
                     var sizeCost=printArray.sizes[$(sizes).val()].cost;
                     var paperCost=printArray.stock[ $(stocks).val()].large_cost;
                 }
-        
-        
         
                 //Calculate the cost for the frame
                 if($(sizes).val()=='0'  && (($(frames).val()=='0') || $(frames).val()=='1'
                 || $(frames).val()=='2' || $(frames).val()=='3' || $(frames).val()=='4')){ 
                     var frameCost=printArray.frame[ $(frames).val()].costs[0];
                 }
-        
                 if($(sizes).val()=='1'  && (($(frames).val()=='0') || $(frames).val()=='1'
                 || $(frames).val()=='2' || $(frames).val()=='3' || $(frames).val()=='4')){ 
                     var frameCost=printArray.frame[ $(frames).val()].costs[1];
-                }      
-        
+                } 
                 if($(sizes).val()=='2'  && (($(frames).val()=='0') || $(frames).val()=='1'
                 || $(frames).val()=='2' || $(frames).val()=='3' || $(frames).val()=='4')){ 
                     var frameCost=printArray.frame[ $(frames).val()].costs[2];
-                }       
-        
+                } 
                 if($(sizes).val()=='3'  && (($(frames).val()=='0') || $(frames).val()=='1'
                 || $(frames).val()=='2' || $(frames).val()=='3' || $(frames).val()=='4')){ 
                     var frameCost=printArray.frame[ $(frames).val()].costs[3];
                 }
-                
                 if($(sizes).val()=='4'  && (($(frames).val()=='0') || $(frames).val()=='1'
                 || $(frames).val()=='2' || $(frames).val()=='3' || $(frames).val()=='4')){ 
                     var frameCost=printArray.frame[ $(frames).val()].costs[4];
                 }
-                
                 //Calculate the total based on quantity
                 var quant=$(quantities).val();
+              
                 var total=quant*(sizeCost+paperCost+frameCost);
-                
                 document.getElementById(totalColumn).innerHTML="$"+total;
               
-                //Calculate shipping cost
+                 subtotal=subtotal+total;
+                totalQuant=parseInt(totalQuant)+parseInt(quant);
               }
-                if ($(frames).val=='0' && $(sship).is(':checked'))
-                {
-                    var sCost=printArray.shipping[0].rules[0];
-                    document.getElementById('shippingCost').innerHTML= "$"+sCost;
-                } else if ($(frames).val==0 && $(eship).is(':checked)')){
-                    var eCost=printArray.shipping[1].rules[0];
-                    document.getElementById('shippingCost').innerHTML="$"+eCost;
+                //Calculate shipping cost 
+                if($(frames).val()=='0'){ 
+                    if($(sship).is(':checked')){
+                    shipCost=shipCost + printArray.shipping[0].rules.none;
+                    } 
+                    else {
+                    shipCost=shipCost +printArray.shipping[1].rules.none;
                 }
+                }
+                
+               if($(frames).val()!='0' && totalQuant <10){
+                   if($(sship).is(':checked')){
+                       shipCost=shipCost + printArray.shipping[0].rules.under10;
+                   } else {
+                       shipCost=shipCost + printArray.shipping[1].rules.under10;
+                   }
+               }
+               
+               if($(frames).val()!='0' && totalQuant >=10){
+                   if($(sship).is(':checked')){
+                       shipCost=shipCost+printArray.shipping[0].rules.over10;
+                   } else {
+                       shipCost=shipCost + printArray.shipping[1].rules.over10;
+                   }
+               }
+               
+               if($(sship).is(':checked')){
+                   if(subtotal>= printArray.freeThresholds[0].amount){
+                       shipCost = 0;
+                   }
+               }
+               
+               if($(eship).is(':checked')){
+                   if(subtotal>=printArray.freeThresholds[1].amount){
+                       shipCost=0;
+                   }
+               }
+               
+                document.getElementById('subTotal').innerHTML="$"+subtotal;
+                document.getElementById('shippingCost').innerHTML="$"+shipCost;
+                var grandTotal=shipCost+subtotal;
+                document.getElementById('grandTotal').innerHTML="$"+grandTotal;
             });
-       });
   
        //event listeners for the print favourite images
        $("#printTable").on("mouseover", function(e) {
@@ -191,12 +207,6 @@ $(function  (){
            }
        });
        
-       
-       
-       
-       
-       
-       
        $(document).ready( function() { 
            $.get("json/printRules.json", function(data){
                printArray=data;
@@ -206,8 +216,6 @@ $(function  (){
               var o_stocks='#orderPaper'+i;
               var o_frames='#orderFrame'+i;
               
-        
-          
               var temp = $(o_sizes).attr("title");
                for(let j=0; j<printArray.sizes.length; j++){
                    if(temp==printArray.sizes[j].id){
@@ -226,7 +234,6 @@ $(function  (){
                        $(o_frames).text(printArray.frame[j].name);
                        break;
                    }}
-                   
                                  }   
               var o_ship='#shipping';
               var temp = $(o_ship).attr("title");
@@ -237,7 +244,10 @@ $(function  (){
                    }}
        });
        });
-       
+       };
+      $('#myButton').on('click', pageFunctions); 
+      $('select').on('change', pageFunctions);
+      $(document).ready(pageFunctions);
 });
 
 

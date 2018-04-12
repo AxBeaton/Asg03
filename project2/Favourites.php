@@ -83,21 +83,20 @@ include "includes/header.inc.php";
                         $imageArray = unserialize($_COOKIE['image']);
           for($i = 0; $i< sizeof($imageArray); $i++) {
             echo "
+            <div id='selectList'>
           <tr><td id='imageColumn" .$i. "'><img src='images/square-small/" .$imageArray[$i]["image"]. "'></img></td><td id='sizeColumn".$i."'><select name='size".$i."' id='sizeSelect".$i."' class='selectSize'></td>
           <td id='paperColumn".$i."'><select name='paper".$i."' id='paperSelect".$i."' class='selectPaper'></td><td id='frameColumn".$i."'><select name='frame".$i."' id='frameSelect".$i."' class='selectFrame'></td>
           <td id='quantityColumn".$i."'><input id='quantity".$i."' type='text' name='quantity".$i."' size='4'></td><td id='totalColumn".$i."'></td>
+         </div>
          ";  
           }
           }
           else{}
-           echo "<tr><td></td><td></td><td><input id='standardShip' type='radio' name='ship' checked>Standard</td><td>
-           <input id='expressShip' type='radio' name='ship'>Express</td><td style='font-style:italic;'>Subtotal:</td><td id='subTotal'></td></tr>";
+           echo "<tr><td></td><td></td><td><input id='standardShip' type='radio' name='ship' checked><p id='shipNameBasic'></p></td>
+           <td><input id='expressShip' type='radio' name='ship'><p id='shipName'></p></td><td style='font-style:italic;'>Subtotal:</td><td id='subTotal'></td></tr>";
            echo "<tr><td></td><td></td><td></td><td></td><td style='font-style:italic;'>Shipping:</td><td id='shippingCost'></td></tr><br>";
            echo "<tr><td></td><td></td><td></td><td></td><td style='font-style:italic;'>Grand Total:</td><td id='grandTotal'></td></tr>";
-           
-         //echo "<tr><td></td><td></td><td></td><td><input id='standardShip' type='radio' name='ship' checked> Standard <br>
-   //<input id='expressShip' type='radio' name='ship'> Express</td><td></td><td></td></tr>";
-         echo "<tr><td></td><td></td><td></td><td></td><td></td><td><input <input type='submit' value='Order'></td></tr>";
+         echo "<tr><td></td><td></td><td></td><td></td><td></td><td id ='submitCell'><input type='submit' value='Order'></td></tr>";
           ?> 
           </form>
           </table>

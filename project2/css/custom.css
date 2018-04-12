@@ -97,7 +97,13 @@ display: none;
     width: 100%;
 }
 
-th, td {
+#ordersTable{
+    font-size: 1.25em;
+    font-weight: bold;
+
+}
+
+th, td{
     border-bottom: 1px solid #ddd;
     padding-bottom: 1em;
 }
