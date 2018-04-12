@@ -94,9 +94,17 @@ if(!isset($_GET['id']) || empty($_GET['id'])) {
                     }
                     
                 </script>
-             </ui>   
+             </ui>
+             
          </div>
-        </div>     
+         <div class = "alert hidden">Added to Favourites!<?php if(isset($_GET['fav'])): ?> <script>
+                                var content = $(".hidden").removeClass("hidden");
+                                setTimeout(function() {
+                                    $(".alert").addClass("hidden");
+                                }, 2000);
+                               </script> <?php endif; ?></div>
+        </div>   
+        
     </main>
 
                    

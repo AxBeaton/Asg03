@@ -103,7 +103,12 @@
                                     <li>Rating: <?php generateStars($star[0]['RatingSum'])?> </li> 
                                 </ul>
                             </div>
-                            <div class="hidden">test<?php if(isset($_GET['fav'])): ?> <script>alert('Added To Favourites!')</script> <?php endif; ?></div>
+                            <div class = "alert hidden">Added to Favourites!<?php if(isset($_GET['fav'])): ?> <script>
+                                var content = $(".hidden").removeClass("hidden");
+                                setTimeout(function() {
+                                    $(".alert").addClass("hidden");
+                                }, 2000);
+                               </script> <?php endif; ?></div>
                         </div>
                         <div class='btn-group btn-group-justified' role='group' aria-label='responses'>
                             <div class='btn-group' role='group'>
@@ -125,7 +130,7 @@
                <div id='map'></div>
                 <script>
       function initMap() {
-var lat =<?php 
+var lat = <?php 
 $result= $db4 -> getPosition($_GET['id']);
 foreach($result as $row){
     echo $row['Latitude'];

@@ -55,11 +55,55 @@ include "includes/header.inc.php";
                         echo "<a href='removeCookies.php?imageAll=y'>Remove all image favourites</a>";
                     echo "</li>";
                     }
+                    
                     ?>
+                    <button id="myButton" data-toggle="modal" data-target="#myModal" type="button" class="btn btm-primary" >Print Favourites</button>
+                    <!-- Modal -->
+                    
+
                 </ul>
             </div>
         </div>
     </div>
 </main>
+
 <?php include "includes/footer.inc.php"; ?>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Print Favourites</h5>
+      </div>
+      <div class="modal-body" >
+          <table id="printTable" class="projTables" style="height:450px !important;">
+              <form id="tableForm" action="order.php" method="get" name="modalForm">
+              <tr><td></td><td>Size</td><td>Paper</td><td>Frame</td><td>Quantity</td><td>Total</td></tr>
+          <?php 
+          if (isset($_COOKIE['image'])) {
+                        $imageArray = unserialize($_COOKIE['image']);
+          for($i = 0; $i< sizeof($imageArray); $i++) {
+            echo "
+          <tr><td id='imageColumn" .$i. "'><img src='images/square-small/" .$imageArray[$i]["image"]. "'></img></td><td id='sizeColumn".$i."'><select name='size".$i."' id='sizeSelect".$i."' class='selectSize'></td>
+          <td id='paperColumn".$i."'><select name='paper".$i."' id='paperSelect".$i."' class='selectPaper'></td><td id='frameColumn".$i."'><select name='frame".$i."' id='frameSelect".$i."' class='selectFrame'></td>
+          <td id='quantityColumn".$i."'><input id='quantity".$i."' type='text' name='quantity".$i."' size='4'></td><td id='totalColumn".$i."'></td>
+         ";  
+          }
+          }
+          else{}
+           echo "<tr><td></td><td></td><td><input id='standardShip' type='radio' name='ship' checked>Standard</td><td>
+           <input id='expressShip' type='radio' name='ship'>Express</td><td style='font-style:italic;'>Subtotal:</td><td id='subTotal'></td></tr>";
+           echo "<tr><td></td><td></td><td></td><td></td><td style='font-style:italic;'>Shipping:</td><td id='shippingCost'></td></tr><br>";
+           echo "<tr><td></td><td></td><td></td><td></td><td style='font-style:italic;'>Grand Total:</td><td id='grandTotal'></td></tr>";
+           
+         //echo "<tr><td></td><td></td><td></td><td><input id='standardShip' type='radio' name='ship' checked> Standard <br>
+   //<input id='expressShip' type='radio' name='ship'> Express</td><td></td><td></td></tr>";
+         echo "<tr><td></td><td></td><td></td><td></td><td></td><td><input <input type='submit' value='Order'></td></tr>";
+          ?> 
+          </form>
+          </table>
+      </div>
+      
+    </div>
+  </div>
+</div
 </html>

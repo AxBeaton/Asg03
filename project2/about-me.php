@@ -9,7 +9,7 @@
           <h5>External Resources Used</h5>
           <ul class="list-group">
               <li class="list-group-item"><a href="https://getbootstrap.com">Bootstrap</a></li>
-              <li class="list-group-item"><a href="https://github.com/rconnolly/comp3512-w2018-assign1.git">Project on Github</a></li>
+              <li class="list-group-item"><a href="https://github.com/AxBeaton/comp3512-Assgn02.git">Project on Github</a></li>
               <li class="list-group-item"><a href="http://catalogue.pearsoned.ca/educator/product/Fundamentals-of-Web-Development-2E/9780134481265.page">Fundementals of Web Development Textbook</a></li>
           </ul>
           </div>

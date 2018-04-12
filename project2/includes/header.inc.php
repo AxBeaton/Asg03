@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/bootstrap-theme.css" />
     <link rel="stylesheet" href="css/theme.css" />
     
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>  
+    <script src="js/script.js"></script>
     
     
 <style>
@@ -54,6 +56,11 @@
     background-color: white !important;
     
     }
+    
+    .modal-backdrop {
+  z-index: -1;
+}
+
     
 </style>
 </head>

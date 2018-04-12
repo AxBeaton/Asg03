@@ -88,3 +88,16 @@ display: none;
 .panel-heading{
     background-color: #4484CE !important;
 }
+
+.modal-backdrop {
+  z-index: -1;
+}
+
+.projTables{
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1em;
+}
