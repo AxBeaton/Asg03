@@ -112,19 +112,17 @@ $(function  (){
                 var total=quant*(sizeCost+paperCost+frameCost);
                 
                 document.getElementById(totalColumn).innerHTML="$"+total;
-              }
+              
                 //Calculate shipping cost
-                var standardCost=5;
-                var expressCost=15;
+              }
                 if ($(frames).val=='0' && $(sship).is(':checked'))
                 {
-                    document.getElementById("shippingCost").innerHTML= "$"+standardCost;
+                    var sCost=printArray.shipping[0].rules[0];
+                    document.getElementById('shippingCost').innerHTML= "$"+sCost;
                 } else if ($(frames).val==0 && $(eship).is(':checked)')){
-                    document.getElementById("shippingCost").innerHTML="$"+expressCost;
+                    var eCost=printArray.shipping[1].rules[0];
+                    document.getElementById('shippingCost').innerHTML="$"+eCost;
                 }
-                
-                
-              
             });
        });
   
