@@ -98,7 +98,7 @@ $(function  (){
                  subtotal=subtotal+total;
                 totalQuant=parseInt(totalQuant)+parseInt(quant);
               }
-                //Calculate shipping cost 
+                //Calculate shipping cost
                 if($(frames).val()=='0'){ 
                     if($(sship).is(':checked')){
                     shipCost=shipCost + printArray.shipping[0].rules.none;
